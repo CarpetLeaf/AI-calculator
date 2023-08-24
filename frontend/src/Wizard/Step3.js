@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import RadioButtonComponent from './RadioButtonComponent';
 import './wizard.css';
 import { ReactComponent as MySvg } from '../images/icon.svg';
 import BlueCircles from "./BlueCircles";
@@ -24,11 +23,6 @@ export const Step3 = ({ onNext, questionOne, onBack, filledStates, setFilledStat
   const handleBack = () => {
     setFilledStates(setCurrentStateBack());
     onBack();
-  }
-
-  const handleRadioChange = (event) => {
-    console.log("Выбранное значение:", event.target.value);
-    setAnswerOneValue(event.target.value);
   }
 
   function setCurrentStateNext() {
@@ -105,13 +99,6 @@ export const Step3 = ({ onNext, questionOne, onBack, filledStates, setFilledStat
             </label>
           </div>
         </div>
-        {/* <div>
-            <RadioButtonComponent 
-                options={["Да", "Нет"]}
-                label=""
-                onChange={handleRadioChange}
-            />
-        </div> */}
 
         <div class="navSection">
           <button type="button" onClick={() => handleBack()}>&larr; &nbsp; Назад</button>

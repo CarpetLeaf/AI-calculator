@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import './wizard.css';
 import { Range, getTrackBackground } from "react-range";
 import { ReactComponent as MySvg } from '../images/icon.svg';

@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import Slider from './Slider';
 import './wizard.css';
 import { Range, getTrackBackground } from "react-range";
 import { ReactComponent as MySvg } from '../images/icon.svg';
@@ -11,7 +10,6 @@ export const Step2 = ({ onNext, professionData, onBack, filledStates, setFilledS
   const [sliderStateFront, setSliderStateFront] = useState([0]);
   const [sliderStateBack, setSliderStateBack] = useState(professionData.length !== 0 ? transformDataToSliders() : [[0]]);
   const [fieldsChecked, setEnableButton] = useState(true);
-  const [sumEmps, setSumEmps] = useState(true);
 
   function transformDataToSliders() {
     const arr = [];
@@ -41,10 +39,8 @@ export const Step2 = ({ onNext, professionData, onBack, filledStates, setFilledS
       sum += percentage;
     })
     if (100 - sum < 0){
-      console.log('limitPercentage: ', 0);
       return 0;
     }
-    console.log('limitPercentage: ', 100-sum);
     return 100 - sum;
   }
 
@@ -52,13 +48,11 @@ export const Step2 = ({ onNext, professionData, onBack, filledStates, setFilledS
     // Обновляем соответствующее значение в состоянии
     const newArr = sliderStateBack;
     const val = value * 1
-    // newArr[index] = [value * 1];
     if (newArr[index])
       if (newArr[index][0] + limitPercentage() >= value * 1)
         newArr[index] = [value * 1];
       else newArr[index] = [newArr[index][0] + limitPercentage()]
     else newArr[index] = [value * 1];
-    // setSliderStateBack(newArr);
     setSlidersProfessionValues(prevState => ({
       ...prevState,
       [profession]: val
@@ -85,7 +79,6 @@ export const Step2 = ({ onNext, professionData, onBack, filledStates, setFilledS
     const newSalary = salaryBackend;
     newSalary[index] = event.target.value;
     setSalaryBackend(newSalary);
-    console.log("salaryBack: ", salaryBackend);
     setEnableButton(checkFields());
   }
 
@@ -117,14 +110,12 @@ export const Step2 = ({ onNext, professionData, onBack, filledStates, setFilledS
   }, [sliderStateBack]);
 
   useEffect(() => {
-    console.log('professionData: ', professionData);
     Object.entries(professionData).map(([profession, percentage], index) => {
       handleSliderEmployeeChange(profession, percentage, index);
     })
   }, [professionData])
 
   useEffect(() => {
-    console.log('slidersProfessionValues: ', slidersProfessionValues);
     const newArr = sliderStateBack;
     Object.entries(slidersProfessionValues).map(([profession, percentage], index) => {
       if (newArr[index])
@@ -135,7 +126,6 @@ export const Step2 = ({ onNext, professionData, onBack, filledStates, setFilledS
       // newArr[index] = [percentage * 1];
     })
     setSliderStateBack(newArr);
-    console.log('sliderStateBack: ', sliderStateBack);
   }, [slidersProfessionValues])
 
 

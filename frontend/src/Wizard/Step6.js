@@ -4,25 +4,11 @@ import { ReactComponent as MySvg } from '../images/icon.svg';
 import BlueCircles from "./BlueCircles";
 
 export const Step6 = ({ onNext, companyData, professionData, reportValue, answerOne, answerTwo, questionOne, questionTwo, filledStates, setFilledStates }) => {
-  const [answerThreeValue, setAnswerThreeValue] = useState('');
-  const [fieldsChecked, setEnableButton] = useState(true);
-
-  function checkFields() {
-    if (document.getElementById("answer-imput").value.length === 0){
-        return true;
-    }
-    return false;
-  }
 
   function setCurrentStateNext() {
     const changedState = [0, 0, 0, 0];
     return changedState;
   }
-
-  function changeAnswer(event){
-    setAnswerThreeValue(event.target.value);
-    setEnableButton(checkFields());
-}
   
   const handleSubmit = e => {
     e.preventDefault();

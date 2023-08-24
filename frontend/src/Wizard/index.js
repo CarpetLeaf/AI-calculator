@@ -46,7 +46,6 @@ function Wizard() {
   };
 
   const handleQuestinonOneValueNext = answerOneValue => {
-    console.log("answer 1: ", answerOneValue)
     setAnswerOne(answerOneValue);
 
     setStep(4); // Переходим на новый шаг
